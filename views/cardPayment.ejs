@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Payment Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .payment-info {
+            margin-bottom: 20px;
+        }
+
+        .payment-info p {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="tel"],input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 20px 0;
+            border: none;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button.cancel {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <form action="/cardPayment.ejs" method="post">
+    <div class="container">
+        <h1>Card Payment</h1>
+        <div class="payment-info">
+            <p>Amount to be paid: <%= bill.ticket_cost %> <!-- Fetch this value dynamically from the database --></p>
+            <input type="text" placeholder="Enter your name" name="userBooked" id="userBooked" required>
+            <input type="tel" placeholder="Enter Phone number (10 digits)" name="phone_no" id="phone_no" pattern="[0-9]{10}" required title="Please enter 10 digits">
+            <input type="text" placeholder="Card Number (16 digits)" name="card_no" id="card_no" pattern="[0-9]{16}" required title="Please enter 16 digits">
+            <input type="text" placeholder="Expiry Date" name="date" id="date" required>
+            <input type="text" placeholder="CVV" name="cvv" id="cvv" required> <hr>
+            AMOUNT : <%= bill.ticket_cost %>
+        </div>
+            <button type="submit">Pay Now</button>
+            <button type="button" class="cancel" onclick="window.location.href='/paymentDetails.ejs'">Cancel</button>
+
+    </div>
+</form>
+</body>
+</html>

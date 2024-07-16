@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .booking-info {
+            margin-bottom: 30px;
+        }
+        
+        .buttons {
+            text-align: center;
+        }
+        
+        .confirm-book, .back {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .confirm-book:hover, .back:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form action="/bookingDetails.ejs" method="post">
+    <div class="container">
+        <h1>Booking Details</h1>
+        <div class="booking-info">
+            <p>Movie: <%= showDetails.movie %></p>
+            <p>Number of Tickets: <%= showDetails.no_seats %></p>
+            <p>Theatre: <%= showDetails.theatre %></p>
+            <p>Date: <%= showDetails.show_date %></p>
+            <p>Time: <%= showDetails.show_time %></p>
+            <p>Fare: <%= showDetails.ticket_cost %></p>
+        </div>
+        <div class="buttons">
+            <button type="submit"><a href="/paymentDetails.ejs" class="confirm-book">Confirm Book</a> </button>
+            <a href="/bookMovies.ejs" class="back">Back</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

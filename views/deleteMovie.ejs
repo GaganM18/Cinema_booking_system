@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Movie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button, .button {
+            padding: 10px 20px;
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+            text-decoration: none; /* Remove underline */
+            display: inline-block; /* Make the button inline */
+        }
+
+        button:hover, .button:hover {
+            background-color: #cc0000;
+        }
+
+        .back-button {
+            background-color: #4CAF50; /* Change color */
+            margin-top: 10px; /* Adjust margin */
+        }
+    </style>
+</head>
+<body>
+    <form action="/deleteMovie.ejs" method="post">
+        <h1>MOVIE DELETING PANAL</h1>
+        <label for="movie">Select Movie:</label>
+        <select name="movie" id="movie">
+            <% movies.forEach(movie => { %>
+                <option value="<%= movie.movie_name %>"><%= movie.movie_name %></option>
+            <% }); %>
+        </select>
+        <button type="submit">Delete</button>
+        <a href="/crudMenu.ejs" class="button back-button">Back</a> <!-- Added back-button class -->
+        <br><br>
+        <label for="search">Search Movie:</label>
+        <input type="text" id="search" name="search">
+        <button type="button" onclick="searchMovie()">Search</button>
+    </form>
+
+    <script>
+        function searchMovie() {
+            var input, filter, select, option, i;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            select = document.getElementById("movie");
+            option = select.getElementsByTagName("option");
+            for (i = 0; i < option.length; i++) {
+                if (option[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    option[i].selected = true;
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

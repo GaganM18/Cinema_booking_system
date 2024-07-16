@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .payment-details {
+            text-align: left;
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .payment-details p {
+            margin: 10px 0;
+        }
+        .thank-you {
+            color: #4caf50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form action="/paymentDone.ejs">
+    <div class="container">
+        <h1>Payment Successful</h1>
+        <div class="payment-details">
+            <p>Name of user: <%= paymentDetails.userbooked %></p>
+            <p>Phone number: <%= phone_no %></p>
+            <p>Card Number : <%= paymentDetails.card_no %></p>
+            <p>Movie name: <%= showDetails.movie %></p>
+            <p>Theatre name: <%= showDetails.theatre %></p>
+            <p>Seats booked: <%= showDetails.no_seats %></p>
+            <p>Amount paid: <%= showDetails.ticket_cost %></p>
+        </div>
+        <p class="thank-you">Thank you for booking! Enjoy your show.</p>
+    </div>
+    <a href="/">log-out</a>
+</form>
+</body>
+</html>

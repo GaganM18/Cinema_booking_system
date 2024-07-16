@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Show</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        select, input[type="date"], input[type="time"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 20px 0;
+            border: none;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.cancel {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Your Show</h1>
+        <form action="/bookMovies.ejs" method="POST">
+            <!-- <label for="movie">Select Movie:</label>
+            <select name="movie" id="movie" required>
+                <% movies.forEach(movie => { %>
+                    <option value="<%= movie.movie_name %>"><%= movie.movie_name %></option>
+                <% }); %>
+            </select> -->
+            <label for="movie">Selected Movie:</label>
+            <select name="movie" id="movie" required>
+                
+            </select>
+            <label for="theatre">Select Theatre:</label>
+            <select name="theatre" id="theatre" required>
+                <% theatres.forEach(theatre => { %>
+                    <option value="<%= theatre.theatre_name %>"><%= theatre.theatre_name %></option>
+                <% }); %>
+            </select>
+            <label for="show_date">Show Date:</label>
+            <input type="date" id="show_date" name="show_date" required>
+            <label for="show_time">Show Time:</label>
+            <select id="show_time" name="show_time" required>
+                <option value="10:00">10 o'clock</option>
+                <option value="15:00">3 o'clock</option>
+                <option value="18:00">6 o'clock</option>
+                <option value="21:00">9 o'clock</option>
+            </select>
+            <label for="no_seats">Number of Seats:</label>
+            <input type="number" id="no_seats" name="no_seats" min="1" required>
+            <label for="cost">Seat Type:</label>
+            <select name="ticket_cost" id="ticket_cost" required>
+                <option value="gandhi_class">Gandhi Class-80/-</option>
+                <option value="second_class">Second Class-120/-</option>
+                <option value="balcony">Balcony-200/-</option>
+            </select>
+
+            <button type="submit">Book Now</button>
+            <button type="button" class="cancel" onclick="window.location.reload()">Cancel</button>
+            <a href="/afterLoginHome.ejs">MAIN MENU</a>
+        </form>
+    </div>
+
+    <script>
+        // Function to parse the URL and extract the query parameter value
+        function getQueryParam(param) {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return urlParams.get(param);
+        }
+
+        // Get the selected movie name from the query parameter
+        const movieSelected = getQueryParam('movieSelected');
+
+        // Set the selected movie as the default option in the select field
+        const movieSelect = document.getElementById('movie');
+        const option = document.createElement('option');
+        option.value = movieSelected;
+        option.text = movieSelected;
+        movieSelect.add(option);
+    </script>
+</body>
+</html>

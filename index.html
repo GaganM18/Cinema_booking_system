@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Show</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .movies {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .movie {
+            width: calc(20% - 20px);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .movie img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .movie h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .book-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .book-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form action="afterLoginHome.ejs" method="post">
+    <div class="container">
+        <h1 style="text-align: center;">Book Your Show</h1>
+        <div class="movies">
+            <% moviesData.forEach(movie => { %>
+                <div class="movie">
+                    <img src="<%= movie.image %>" alt="<%= movie.movie_name %>">
+                    <h2><%= movie.movie_name %></h2>
+                    <button class="book-button">Book Now</button>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</form>
+</body>
+</html>
